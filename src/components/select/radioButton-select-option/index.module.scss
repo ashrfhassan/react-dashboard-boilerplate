@@ -1,0 +1,41 @@
+@import '../../../styles/_colors';
+@import '../../../styles/_font_styles';
+
+.select-component-option {
+}
+
+.custom-pretty-check {
+  i {
+    top: calc((0% - (100% - 0.8em)) - 8%) !important;
+  }
+
+  input:checked ~ div {
+    label {
+      &::before {
+        border: 5px solid transparent;
+        width: calc(1em + 5px);
+        height: calc(1em + 5px);
+        margin-left: -2px;
+        border-color: $kellyGreen !important;
+      }
+    }
+  }
+
+  .check-color {
+    color: white;
+  }
+}
+
+.checkBox-text {
+  @extend .arabic-font;
+  @extend .fs-md;
+  @extend .f-w-bold;
+  display: inline;
+  color: $darkBlack;
+}
+
+[dir='rtl'] {
+  .checkBox-text {
+    margin-right: 1rem;
+  }
+}

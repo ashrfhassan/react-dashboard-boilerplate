@@ -1,0 +1,122 @@
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '../../styles//_colors';
+.fixed-menu {
+  background: $Space-Cadet !important;
+  overflow: hidden !important;
+  height: 100vh !important;
+  position: fixed !important;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  ul {
+    background: $Space-Cadet !important;
+    li {
+      &.no-bg {
+        &:active,
+        &:focus {
+          background: none !important;
+        }
+      }
+    }
+    :global(.ant-menu-item):active {
+      background-color: $Police-Blue !important;
+    }
+    :global(.ant-menu-submenu-title):active {
+      background-color: $Police-Blue !important;
+    }
+    :global(.ant-menu-item-selected) {
+      background-color: $Police-Blue !important;
+      &.no-bg {
+        background: none !important;
+        &:active,
+        &:focus {
+          background: none !important;
+        }
+      }
+    }
+  }
+}
+
+.menu-divider {
+  color: white !important;
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: 0 !important;
+}
+
+.site-layout {
+  transition: all 0.2s;
+}
+
+[dir='ltr'] {
+  @include media-breakpoint-up(md) {
+    .fixed-menu {
+      left: 0;
+    }
+    .fixed-menu.opened + .site-layout {
+      margin-left: 200px;
+    }
+    .fixed-menu.closed + .site-layout {
+      margin-left: 80px;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    .fixed-menu.opened {
+      left: 0;
+    }
+    .fixed-menu.closed {
+      left: -5rem;
+    }
+  }
+}
+
+[dir='rtl'] {
+  @include media-breakpoint-up(md) {
+    .fixed-menu {
+      right: 0;
+    }
+    .fixed-menu.opened + .site-layout {
+      margin-right: 200px;
+    }
+    .fixed-menu.closed + .site-layout {
+      margin-right: 80px;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    .fixed-menu.opened {
+      right: 0;
+    }
+    .fixed-menu.closed {
+      right: -5rem;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .menu-mobile-blocker {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &.opened {
+      display: block;
+    }
+    &.closed {
+      display: none;
+    }
+  }
+}
+.scroll-menu-list {
+  overflow: auto;
+  height: 80vh !important;
+}
+
+.bottom-menu {
+  position: absolute !important;
+  bottom: 1rem;
+}

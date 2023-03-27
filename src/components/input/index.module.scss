@@ -1,0 +1,118 @@
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+input.input {
+  padding: 4px 20px 5px 20px;
+  border-radius: 4px;
+  border: solid 1px #c8c9cc;
+  background-color: $lightWhite;
+
+  &::placeholder {
+    @extend .arabic-font;
+    @extend .fs-md;
+    @extend .f-w-thin;
+    text-align: start;
+    color: $gull-Grey;
+  }
+
+  &-success {
+    border-color: $kellyGreen;
+    background-color: $kellyGreen-success;
+  }
+  &-error {
+    border-color: $dangerRed;
+    background-color: $dangerRed-light;
+  }
+}
+
+.input-label {
+  color: $inputLabelGrey;
+}
+
+.phone-input {
+  height: 2.38rem;
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+[dir='rtl'] {
+  .phone-input {
+    border-right: none !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+}
+[dir='ltr'] {
+  .phone-input {
+    border-left: none !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+}
+
+.phone-input-container:has(.phone-input:focus) {
+  .select-container {
+    div:nth-of-type(1):not(:first-child) {
+      border-color: #86b7fe !important;
+      background-color: transparent !important;
+    }
+  }
+}
+
+.select-container {
+  div:nth-of-type(1):not(:first-child) {
+    border-radius: 0.4rem;
+  }
+  &-error {
+    div:nth-of-type(1):not(:first-child) {
+      border-color: $dangerRed;
+      background-color: $dangerRed-light;
+    }
+  }
+  &-success {
+    div:nth-of-type(1):not(:first-child) {
+      border-color: $kellyGreen;
+      background-color: $kellyGreen-success;
+    }
+  }
+}
+
+[dir='rtl'] {
+  .select-container {
+    div:nth-of-type(1):not(:first-child) {
+      border-left: none;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
+[dir='ltr'] {
+  .select-container {
+    div:nth-of-type(1):not(:first-child) {
+      border-right: none;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+.text-area {
+  resize: none;
+}
+.area-counter {
+  @extend .fs-md;
+}
+.input-icon {
+  position: absolute;
+  top: 12%;
+}
+[dir='ltr'] {
+  .input-icon {
+    right: 0;
+  }
+}
+[dir='rtl'] {
+  .input-icon {
+    left: 0;
+  }
+}

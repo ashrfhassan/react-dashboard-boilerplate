@@ -1,0 +1,133 @@
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '_colors';
+// ********** FONTS CLASSES *****************
+@font-face {
+  font-family: 'NotoKufiArabic';
+  src: url('/assets/fonts/noto_kufi_arabic/NotoKufiArabic-VariableFont_wght.ttf');
+}
+
+.arabic-font {
+  font-family: 'NotoKufiArabic';
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+}
+[dir='ltr'] {
+  .arabic-font {
+    line-height: 1;
+    margin-top: 0.7rem;
+    @include media-breakpoint-down(sm) {
+      line-height: 1;
+    }
+  }
+}
+[dir='rtl'] {
+  .arabic-font {
+    line-height: 1.86;
+    margin-top: 0rem;
+    @include media-breakpoint-down(sm) {
+      line-height: 1.6;
+    }
+  }
+}
+
+.f-w-thin {
+  font-weight: 300;
+}
+
+.f-w-normal {
+  font-weight: 500;
+}
+
+.f-w-bold {
+  font-weight: 600;
+}
+
+.fs-xx-sm {
+  font-size: 0.6rem !important;
+  &-mobile {
+    @include media-breakpoint-down(sm) {
+      font-size: 0.6rem !important;
+    }
+  }
+}
+
+.fs-x-sm {
+  font-size: 0.7rem !important;
+  &-mobile {
+    @include media-breakpoint-down(sm) {
+      font-size: 0.7rem !important;
+    }
+  }
+}
+
+.fs-sm {
+  font-size: 0.8rem !important;
+  &-mobile {
+    @include media-breakpoint-down(sm) {
+      font-size: 0.8rem !important;
+    }
+  }
+}
+
+.fs-md {
+  font-size: 0.9rem !important;
+  &-mobile {
+    @include media-breakpoint-down(sm) {
+      font-size: 0.9rem !important;
+    }
+  }
+}
+
+.fs-l {
+  font-size: 1rem !important;
+  &-mobile {
+    @include media-breakpoint-down(sm) {
+      font-size: 1rem !important;
+    }
+  }
+}
+
+.fs-x-l {
+  font-size: 1.25rem !important;
+  &-mobile {
+    @include media-breakpoint-down(sm) {
+      font-size: 0.1.25rem !important;
+    }
+  }
+}
+
+.fs-xx-l {
+  font-size: 2rem !important;
+  &-mobile {
+    @include media-breakpoint-down(sm) {
+      font-size: 1.8rem !important;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    font-size: 1.8rem !important;
+  }
+}
+
+.text-darkBlack {
+  color: $darkBlack;
+}
+
+.text-lightWhite {
+  color: $lightWhite;
+}
+
+.text-gullGrey {
+  color: $gull-Grey;
+}
+
+.text-darkBlack-lighter {
+  color: $darkBlack-lighter;
+}
+
+.text-kellyGreen {
+  color: $kellyGreen;
+}

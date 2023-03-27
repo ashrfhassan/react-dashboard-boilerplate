@@ -1,0 +1,23 @@
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+.custom-alert {
+  @extend .arabic-font;
+  padding: 0.5rem 0.5rem !important;
+  &-error {
+    color: $lightWhite !important;
+    background-color: $dangerRed !important;
+  }
+  &-success {
+    color: $lightWhite !important;
+    background-color: $dangerRed !important;
+  }
+  &-warning {
+    color: $lightWhite !important;
+    background-color: $dangerRed !important;
+  }
+  &-info {
+    color: $lightWhite !important;
+    background-color: $dangerRed !important;
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "global": {
+    "validation": {
+      "required": "Must enter this field",
+      "email": "Wrong email",
+      "password": "Wrong password",
+      "passwordMin": "Password should be more than 5 length",
+      "passwordMax": "Password should be less than 15 length",
+      "passwordMatch": "password must match"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "forms": {
+      "submit": "Submit"
+    }
+  },
+  "pages": {
+    "login": {
+      "headPageTitle": "Sign in",
+      "title": "Sign in",
+      "email-input-label": "Email address",
+      "email-input-placeholder": "Example@mail.com",
+      "password-input-label": "Password",
+      "password-input-placeholder": "Enter your password",
+      "login-button": "Login",
+      "signup-button": "Sign up"
+    },
+    "my-profile": {
+      "about": "About",
+      "activities": "Activities",
+      "last-login": "Last login",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password"
+    },
+    "user": {
+      "name": "Name",
+      "birth": "Birth"
+    }
+  },
+  "sideMenu": {
+    "title": "User",
+    "dashboard": "Dashboard",
+    "pages": "Pages",
+    "users": "Users",
+    "settings": "Settings",
+    "logout": "Logout"
+  }
+}

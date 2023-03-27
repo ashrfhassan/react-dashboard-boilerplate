@@ -1,0 +1,70 @@
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+.btn-base {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  &:disabled {
+    color: $gull-Grey;
+    background-color: $disabledGrey;
+    border-color: $disabledGrey;
+    opacity: 0.9;
+    cursor: not-allowed;
+    pointer-events: auto;
+    &:hover,
+    &:active {
+      color: $gull-Grey;
+      background-color: $disabledGrey;
+      border-color: $disabledGrey;
+      opacity: 0.9;
+    }
+  }
+}
+
+button.button-dark {
+  @extend .btn-base;
+  color: $lightWhite;
+  background-color: $darkBlack;
+  border-color: $darkBlack;
+  &:hover {
+    color: $lightWhite;
+    background-color: $darkBlack-lighter;
+    border-color: $darkBlack-lighter;
+  }
+  &:focus {
+    box-shadow: $darkBlack-lighter;
+  }
+  &:active:not([disabled]) {
+    color: $lightWhite;
+    background-color: $darkBlack-flash;
+    border-color: $darkBlack-flash;
+    box-shadow: inset 0 3px 5px $darkBlack-flash;
+  }
+}
+
+button.button-light {
+  @extend .btn-base;
+  color: $greenGrey;
+  background-color: $lightWhite;
+  border-color: $grey-soft;
+  &:hover {
+    color: $greenGrey;
+    background-color: $lightWhite-darker;
+    border-color: $lightWhite-darker;
+  }
+  &:focus {
+    box-shadow: $lightWhite-darker;
+  }
+  &:active:not([disabled]) {
+    color: $greenGrey;
+    background-color: $lightWhite-flash;
+    border-color: $lightWhite-flash;
+    box-shadow: inset 0 3px 5px $lightWhite-flash;
+  }
+}
+
+.pill-btn {
+  @extend .fs-sm;
+}

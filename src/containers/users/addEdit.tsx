@@ -1,0 +1,26 @@
+import React, { useEffect } from 'react';
+import styles from './index.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { Row, Col } from 'react-bootstrap';
+import { Card } from 'antd';
+import UserForm from '../../forms/users';
+
+interface IAddEditUserContainerProps {
+  data?: any;
+}
+
+function AddEditUserContainer(props: IAddEditUserContainerProps) {
+  const dispatch = useDispatch();
+
+  return (
+    <Row className={'m-0 p-0'}>
+      <Col sm={12} className={'p-0 text-center'}>
+        <Card>
+          <UserForm />
+        </Card>
+      </Col>
+    </Row>
+  );
+}
+
+export default AddEditUserContainer;

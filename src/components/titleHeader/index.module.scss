@@ -1,0 +1,30 @@
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+.titleHeader {
+  @extend .arabic-font;
+  @extend .fs-xx-l;
+  @extend .f-w-bold;
+  color: $darkBlack;
+  margin-bottom: -0.5rem;
+}
+
+.subtitleHeader {
+  @extend .arabic-font;
+  @extend .fs-x-l;
+  color: $subtitleGrey;
+  margin-bottom: -0.5rem;
+}
+
+.smallertitleHeader {
+  @extend .arabic-font;
+  @extend .fs-l;
+  color: $subtitleGrey;
+  margin-bottom: -0.5rem;
+}
+
+.underline {
+  width: 33px;
+  height: 4px;
+  background-color: $kellyGreen;
+}

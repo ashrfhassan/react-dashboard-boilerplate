@@ -1,0 +1,155 @@
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '_colors';
+@import '_font_styles';
+
+.full-view-hieght {
+  height: 100vh;
+}
+
+.full-hieght {
+  height: 100%;
+}
+
+.highlight-text {
+  background-color: yellow;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.flex-content {
+  display: flex;
+  flex: 0 0 0 !important;
+}
+
+.scoll-row-horizontal {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: block !important;
+  .col {
+    display: inline-block !important;
+    width: auto;
+    max-width: none;
+  }
+}
+
+.btn-border-none {
+  button {
+    border: none;
+    &:active,
+    &:focus {
+      border: none;
+    }
+  }
+}
+
+body {
+  background-color: $offWhite;
+}
+.pages-bg {
+  > div {
+    background-color: $offWhite;
+  }
+}
+
+[dir='ltr'] {
+  .flip-item {
+  }
+}
+
+[dir='rtl'] {
+  .flip-item {
+    transform: scaleX(-1);
+  }
+}
+
+[dir='ltr'] {
+  .text-align-start {
+    text-align: left !important;
+  }
+  .text-align-end {
+    text-align: right !important;
+  }
+}
+
+[dir='rtl'] {
+  .text-align-start {
+    text-align: right !important;
+  }
+  .text-align-end {
+    text-align: left !important;
+  }
+}
+
+.error-message {
+  @extend .arabic-font;
+  @extend .f-w-bold;
+  @extend .fs-x-sm;
+  color: $dangerRed !important;
+}
+
+.font-gull-grey {
+  @extend .arabic-font;
+  color: $gull-Grey;
+}
+.font-dark-black {
+  @extend .arabic-font;
+  color: $darkBlack;
+}
+.font-lightwhite-color {
+  @extend .arabic-font;
+  color: $lightWhite !important;
+}
+
+.text-xsm-white {
+  @extend .arabic-font;
+  @extend .fs-x-sm;
+  color: $lightWhite;
+}
+
+.text-xsm-black {
+  @extend .arabic-font;
+  @extend .fs-x-sm;
+  color: $darkBlack;
+}
+
+.arrow-icon {
+  cursor: pointer;
+}
+
+[dir='rtl'] {
+  .arrow-icon {
+    transform: scalex(-1);
+  }
+}
+
+.arrow-pagination {
+  margin-right: 0.4rem;
+  margin-left: 0.4rem;
+}
+
+[dir='ltr'] {
+  .arrow-pagination {
+    padding-top: 0rem;
+  }
+}
+
+[dir='rtl'] {
+  .arrow-pagination {
+    padding-top: 0.55rem;
+  }
+}
+
+.active-button {
+  color: $lightWhite !important;
+  background-color: $darkBlack-flash !important;
+  border-color: $darkBlack-flash !important;
+}
+
+.ant-menu-item-selected {
+  background-color: $Police-Blue !important;
+}

@@ -1,0 +1,9 @@
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+.label {
+  @extend .arabic-font;
+  @extend .f-w-normal;
+  color: $darkBlack;
+  text-align: start;
+}

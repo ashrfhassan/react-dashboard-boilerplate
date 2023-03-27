@@ -1,0 +1,13 @@
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+[dir='ltr'] {
+  .half-star {
+    transform: none;
+  }
+}
+[dir='rtl'] {
+  .half-star {
+    transform: scalex(-1);
+  }
+}

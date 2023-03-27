@@ -1,0 +1,16 @@
+@import '../../../styles/_font_styles';
+@import '../../../styles/_colors';
+
+.option-text {
+  @extend .arabic-font;
+  @extend .fs-md;
+  @extend .f-w-normal;
+  display: inline;
+  color: $darkBlack;
+}
+
+[dir='rtl'] {
+  .option-text {
+    margin-right: 1rem;
+  }
+}

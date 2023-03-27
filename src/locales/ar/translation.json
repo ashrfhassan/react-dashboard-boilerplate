@@ -1,0 +1,50 @@
+{
+  "global": {
+    "validation": {
+      "required": "يجب ادخال هنا العنصر",
+      "email": "هذا الايميل خطأ",
+      "passwordMin": "كلمه السر يجب ان تكون اكثر من  5 حروف",
+      "passwordMax": "كلمه السر يجب ان تكون اقل من 15 حروف",
+      "passwordMatch": "يجب ان تكون كلمة السر متطابقة"
+    },
+    "pagination": {
+      "previous": "السابق",
+      "next": "التالى"
+    },
+    "forms": {
+      "submit": "ارسال"
+    }
+  },
+  "pages": {
+    "login": {
+      "headPageTitle": "تسجيل الدخول",
+      "title": "تسجيل الدخول",
+      "email-input-label": "البريد الالىكتروني",
+      "email-input-placeholder": "Example@mail.com",
+      "password-input-label": "كلمة المرور",
+      "password-input-placeholder": "ادخل كلمة المرور الخاصة بك",
+      "login-button": "تسجيل الدخول",
+      "signup-button": "تسجيل حساب جديد"
+    },
+    "my-profile": {
+      "about": "عنك",
+      "activities": "الآحداث",
+      "last-login": "اخر دخول",
+      "currentPassword": "كلمه السر الحاليه",
+      "newPassword": "كلمه السر الجديده",
+      "confirmPassword": "تآكيد كلمه السر"
+    },
+    "user": {
+      "name": "الاسم",
+      "birth": "ميلاد"
+    }
+  },
+  "sideMenu": {
+    "title": "مستخدم",
+    "dashboard": "لوحه التحكم",
+    "pages": "الصفحات",
+    "users": "المستخدمين",
+    "settings": "الاعدادت",
+    "logout": "تسجيل الخروج"
+  }
+}
