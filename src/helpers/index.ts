@@ -267,45 +267,9 @@ export const yupErrorMapping = async (schema: any, values: any) => {
     .then(() => errors)
     .catch((err: any) => {
       err.inner.forEach((errVal: any) => {
-        if (errVal.path.includes('[') && errVal.path.includes(']')) {
-          const arrayPropName = errVal.path.substring(
-            0,
-            errVal.path.indexOf('[')
-          );
-          const errorIndex = errVal.path.substring(
-            errVal.path.indexOf('[') + 1,
-            errVal.path.indexOf(']')
-          );
-          const innerPropName = errVal.path.substring(
-            errVal.path.indexOf(']') + 2
-          );
-          if (
-            errors[arrayPropName] &&
-            errors[arrayPropName][parseInt(errorIndex)] &&
-            errors[arrayPropName][parseInt(errorIndex)][innerPropName]
-          ) {
-            errors[arrayPropName][parseInt(errorIndex)][innerPropName] = [
-              ...errors[arrayPropName][parseInt(errorIndex)][innerPropName],
-              errVal.message,
-            ];
-          } else {
-            if (!errors[arrayPropName]) {
-              errors[arrayPropName] = [
-                {
-                  [innerPropName]: [errVal.message],
-                },
-              ];
-            } else {
-              errors[arrayPropName][parseInt(errorIndex)] = {
-                [innerPropName]: [errVal.message],
-              };
-            }
-          }
-        } else {
-          errors[errVal.path] = errors[errVal.path]
-            ? [...errors[errVal.path], errVal.message]
-            : [errVal.message];
-        }
+        errors[errVal.path] = errors[errVal.path]
+          ? [...errors[errVal.path], errVal.message]
+          : [errVal.message];
       });
       return errors;
     });
