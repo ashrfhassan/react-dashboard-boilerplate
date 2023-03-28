@@ -72,20 +72,18 @@ const DataTable = React.forwardRef(
             </thead>
             <tbody className={styles['tbody']}>
               {rows.map((row, i) => (
-                <tr
-                  key={i}
-                  className='pointer'
-                  onClick={(e: React.MouseEvent<HTMLElement>) =>
-                    row.onClick ? row.onClick(e, row.dataObj) : ''
-                  }
-                >
+                <tr key={i} className='pointer'>
                   {row.props.map((prop, i) => {
                     return (
                       <td
                         key={i}
                         onClick={(e: React.MouseEvent<HTMLElement>) => {
                           e.stopPropagation();
-                          prop.onCellClick?.(e, row.dataObj);
+                          if (prop.onCellClick)
+                            prop.onCellClick(e, row.dataObj);
+                          else if (row.onClick) {
+                            row.onClick(e, row.dataObj);
+                          }
                         }}
                       >
                         {prop.loadContent(row.dataObj)}
