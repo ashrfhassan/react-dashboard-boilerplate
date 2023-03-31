@@ -20,6 +20,7 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
+  "ignorePatterns": ["*.js"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "camelcase": "error",
@@ -34,7 +35,7 @@
     "import/resolver": {
       "typescript": {},
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".jsx", ".ts", ".tsx"]
       }
     }
   }
