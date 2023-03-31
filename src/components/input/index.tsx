@@ -1,5 +1,5 @@
 import Styles from './index.module.scss';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,9 +8,12 @@ import { renderError } from '../../helpers/renderers';
 import Select from '../select';
 import { Options } from 'react-select';
 import PhoneSelectOption from './phoneSelect';
+import { Button as AntButton, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import ImageFileUpload from '../image-file-upload';
 
 export type InputProps = {
-  type: 'text' | 'password' | 'phone' | 'textArea';
+  type: 'text' | 'password' | 'phone' | 'textArea' | 'file';
   placeholder?: string;
   codePlaceholder?: string;
   className?: string;
@@ -27,8 +30,10 @@ export type InputProps = {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => void;
+  onFileChange?: (file: any, base64: string | undefined) => void;
   onCountryCodeChange?: (newValue: any, action: any) => void;
   textAreaValue?: string;
+  textAreaMaxLength?: number;
   textValue?: string;
   icon?: React.ReactNode;
   countryCodes?: Options<{ label: string; value: any }>;
@@ -46,8 +51,10 @@ const Input = React.forwardRef(
       validationCheck,
       onBlur,
       onChange,
+      onFileChange,
       onCountryCodeChange,
       textAreaValue,
+      textAreaMaxLength = 300,
       textValue,
       icon,
       countryCodes,
@@ -59,6 +66,10 @@ const Input = React.forwardRef(
       textAreaValue ? textAreaValue : ''
     );
     const [textInput, setTextInput] = useState(textValue ? textValue : '');
+    const fileRef = useRef<any>(null);
+    const handleFileClick = () => {
+      fileRef.current?.click();
+    };
     if (type === 'phone')
       return (
         <>
@@ -148,15 +159,37 @@ const Input = React.forwardRef(
             placeholder={placeholder}
             onBlur={(e) => (onBlur ? onBlur(e) : undefined)}
             onChange={(e) => {
-              setTextAreaInput(e.currentTarget.value);
-              onChange ? onChange(e) : undefined;
+              if (e.currentTarget.value.length - 1 < textAreaMaxLength) {
+                setTextAreaInput(e.currentTarget.value);
+                onChange ? onChange(e) : undefined;
+              }
             }}
             rows={6}
             value={textAreaInput}
           />
           <div className={`mt-2 font-gull-grey ${Styles['area-counter']}`}>
-            {textAreaInput.length}/300
+            {textAreaInput.length}/{textAreaMaxLength}
           </div>
+          {errorMessage && renderError(errorMessage)}
+        </>
+      );
+    if (type === 'file')
+      return (
+        <>
+          {labelText ? (
+            <Label text={labelText} className={Styles['input-label']} />
+          ) : (
+            <></>
+          )}
+          <ImageFileUpload
+            ref={fileRef}
+            loadImage={(file, base64) => {
+              onFileChange ? onFileChange(file, base64) : undefined;
+            }}
+          />
+          <AntButton icon={<UploadOutlined />} onClick={handleFileClick}>
+            {placeholder}
+          </AntButton>
           {errorMessage && renderError(errorMessage)}
         </>
       );
