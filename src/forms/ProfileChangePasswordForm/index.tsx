@@ -13,6 +13,7 @@ import i18n from '../../i18n';
 import Alert from '../../components/alert';
 import PortalModal from '../../components/portalModal';
 import RatingStars from '../../components/ratingStars';
+import RichBox from '../../components/richBox';
 
 const ProfileChangePasswordForm = () => {
   const { axios } = useAxios();
@@ -140,6 +141,51 @@ const ProfileChangePasswordForm = () => {
                   formik.errors.confirmPassword &&
                   formik.errors.confirmPassword
                     ? formik.errors.confirmPassword
+                    : undefined
+                }
+              />
+            </Col>
+          </Row>
+          <Row className={'me-0 ms-0'}>
+            <Col md={6} className='mt-4 text-align-start'>
+              <RichBox
+                labelText={`${i18n.t('pages.my-profile.newPassword')}`}
+                onChange={(content: any) => {
+                  formik.setFieldValue('password', content);
+                }}
+                errorMessage={
+                  formik.touched.password &&
+                  formik.errors.password &&
+                  formik.errors.password
+                    ? formik.errors.password
+                    : undefined
+                }
+              />
+            </Col>
+            <Col md={6} className='mt-4 text-align-start'>
+              <Input
+                type='textArea'
+                labelText={`${i18n.t('pages.my-profile.newPassword')}`}
+                placeholder={`${i18n.t('pages.my-profile.newPassword')}`}
+                textValue={formik.values.password}
+                onBlur={(e: any) => {
+                  formik.setFieldTouched('password', true);
+                }}
+                onChange={(e: any) => {
+                  formik.setFieldValue('password', e.currentTarget.value);
+                }}
+                validationCheck={
+                  formik.touched.password
+                    ? formik.errors.password
+                      ? 'error'
+                      : 'success'
+                    : undefined
+                }
+                errorMessage={
+                  formik.touched.password &&
+                  formik.errors.password &&
+                  formik.errors.password
+                    ? formik.errors.password
                     : undefined
                 }
               />
