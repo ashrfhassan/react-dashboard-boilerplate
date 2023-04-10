@@ -301,7 +301,11 @@ export const IsJsonString = (str: string) => {
   return true;
 };
 
-export const highlight = (text: string, htmlelements: NodeListOf<Element>) => {
+export const highlight = (
+  text: string,
+  htmlelements: NodeListOf<Element>,
+  isCaseSensetive?: boolean
+) => {
   htmlelements.forEach((el) => {
     let innertext = el.innerHTML;
     if (innertext.indexOf('highlight-text') !== -1) {
@@ -310,7 +314,12 @@ export const highlight = (text: string, htmlelements: NodeListOf<Element>) => {
         .replace('</span>', '');
       el.innerHTML = innertext;
     }
-    const index = innertext.indexOf(text);
+    let index = -1;
+    if (isCaseSensetive) {
+      index = innertext.toLowerCase().indexOf(text.toLowerCase());
+    } else {
+      index = innertext.indexOf(text);
+    }
     if (index >= 0 && text.trim() !== '') {
       el.innerHTML =
         innertext.substring(0, index) +
