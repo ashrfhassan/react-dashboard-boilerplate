@@ -37,6 +37,7 @@ export type InputProps = {
   textValue?: string;
   icon?: React.ReactNode;
   countryCodes?: Options<{ label: string; value: any }>;
+  defaultSelectedCountry?: { label: string; value: any };
 };
 
 const Input = React.forwardRef(
@@ -58,6 +59,7 @@ const Input = React.forwardRef(
       textValue,
       icon,
       countryCodes,
+      defaultSelectedCountry,
       ...rest
     }: InputProps & React.InputHTMLAttributes<HTMLInputElement>,
     ref: React.Ref<HTMLInputElement>
@@ -97,6 +99,9 @@ const Input = React.forwardRef(
                   }`}
                   placeholder={codePlaceholder}
                   options={countryCodes ?? []}
+                  defaultSelectedValues={
+                    defaultSelectedCountry ? [defaultSelectedCountry] : []
+                  }
                   onChange={(newValue: any, action) => {
                     onCountryCodeChange
                       ? onCountryCodeChange(newValue, action)
