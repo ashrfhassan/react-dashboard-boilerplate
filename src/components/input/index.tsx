@@ -1,5 +1,5 @@
 import Styles from './index.module.scss';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -70,6 +70,12 @@ const Input = React.forwardRef(
     const handleFileClick = () => {
       fileRef.current?.click();
     };
+    useEffect(() => {
+      setTextInput(textValue ?? '');
+    }, [textValue]);
+    useEffect(() => {
+      setTextInput(textAreaValue ?? '');
+    }, [textAreaValue]);
     if (type === 'phone')
       return (
         <>
