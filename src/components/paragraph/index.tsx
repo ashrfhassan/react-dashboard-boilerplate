@@ -7,6 +7,8 @@ export type ParagraphProps = {
   hoverTitle?: string;
   editable?: React.ReactNode;
   children?: React.ReactNode;
+  onEnterEdit?: () => void;
+  onLeaveEdit?: () => void;
 };
 
 const Paragraph = React.forwardRef(
@@ -17,6 +19,8 @@ const Paragraph = React.forwardRef(
       type = 'darkBlack',
       hoverTitle,
       editable,
+      onEnterEdit,
+      onLeaveEdit,
     }: ParagraphProps,
     ref: React.Ref<HTMLHeadingElement>
   ) => {
@@ -27,9 +31,23 @@ const Paragraph = React.forwardRef(
         className={`arabic-font mb-0 ${'text-' + type} ${className ?? ''}`}
       >
         {showEditable ? (
-          <span onBlur={() => setShowEditable(false)}>{editable}</span>
+          <span
+            onBlur={() => {
+              onLeaveEdit?.();
+              setShowEditable(false);
+            }}
+          >
+            {editable}
+          </span>
         ) : (
-          <span onClick={() => setShowEditable(true)}>{children}</span>
+          <span
+            onClick={() => {
+              onEnterEdit?.();
+              setShowEditable(true);
+            }}
+          >
+            {children}
+          </span>
         )}
       </div>
     );
