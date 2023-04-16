@@ -306,8 +306,7 @@ export const highlight = (
   htmlelements: NodeListOf<Element>,
   isCaseSensetive?: boolean
 ) => {
-  if (!text || text.trim() == '' || !htmlelements || htmlelements.length == 0)
-    return;
+  if (!htmlelements || htmlelements.length == 0) return;
   htmlelements.forEach((el) => {
     let innertext = el.innerHTML;
     if (innertext.indexOf('highlight-text') !== -1) {
@@ -316,6 +315,7 @@ export const highlight = (
         .replace('</span>', '');
       el.innerHTML = innertext;
     }
+    if (!text || text.trim() == '') return;
     let index = -1;
     if (isCaseSensetive) {
       index = innertext.toLowerCase().indexOf(text.toLowerCase());
