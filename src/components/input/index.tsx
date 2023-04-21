@@ -76,7 +76,7 @@ const Input = React.forwardRef(
       setTextInput(textValue ?? '');
     }, [textValue]);
     useEffect(() => {
-      setTextInput(textAreaValue ?? '');
+      setTextAreaInput(textAreaValue ?? '');
     }, [textAreaValue]);
     if (type === 'phone')
       return (
