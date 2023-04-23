@@ -15,7 +15,7 @@ const SelcetControl = ({
       {children}
       {rest.getValue().length > 0 && (
         <span
-          className={`position-absolute translate-middle p-2 ${styles['bg-kelly-green']} ${styles['select-control-badge']} border border-light rounded-circle`}
+          className={`d-none position-absolute translate-middle p-2 ${styles['bg-kelly-green']} ${styles['select-control-badge']} border border-light rounded-circle`}
         ></span>
       )}
     </components.Control>
