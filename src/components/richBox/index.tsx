@@ -45,7 +45,9 @@ const RichBox = React.forwardRef(
       }
     }, [boxRef]);
     useEffect(() => {
-      if (initEditor) initEditor.setData(content);
+      if (initEditor && content && content?.trim() != '') {
+        initEditor.setData(content);
+      }
     }, [content]);
     return (
       <>
