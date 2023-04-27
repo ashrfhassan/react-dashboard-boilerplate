@@ -25,6 +25,7 @@ export type selectProps = {
   styles?: any;
   isOptionDisabled?: (option: { label: string; value: any }) => boolean;
   onBlur?: (e: any) => void;
+  onInputChange?: (newValue: any, action: any) => void;
   onChange?: (newValue: any, action: any) => void;
   errorMessage?: string | Array<string>;
 };
@@ -48,6 +49,7 @@ const Select = React.forwardRef(
       styles,
       isOptionDisabled,
       onBlur,
+      onInputChange,
       onChange,
       errorMessage,
       ...rest
@@ -118,6 +120,9 @@ const Select = React.forwardRef(
           value={selectedOptions}
           onBlur={(e: any) => {
             onBlur ? onBlur(e) : undefined;
+          }}
+          onInputChange={(newValue: any, actionMeta: any) => {
+            onInputChange?.(newValue, actionMeta);
           }}
           onChange={(newValue: any, actionMeta: any) => {
             let selectedValues = newValue;
