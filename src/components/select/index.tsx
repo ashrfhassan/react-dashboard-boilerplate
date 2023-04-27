@@ -122,7 +122,8 @@ const Select = React.forwardRef(
             onBlur ? onBlur(e) : undefined;
           }}
           onInputChange={(newValue: any, actionMeta: any) => {
-            onInputChange?.(newValue, actionMeta);
+            if (actionMeta.action == 'input-change')
+              onInputChange?.(newValue, actionMeta);
           }}
           onChange={(newValue: any, actionMeta: any) => {
             let selectedValues = newValue;
