@@ -27,6 +27,10 @@ export type selectProps = {
   onBlur?: (e: any) => void;
   onInputChange?: (newValue: any, action: any) => void;
   onChange?: (newValue: any, action: any) => void;
+  loadOptions?: (
+    inputValue: string,
+    callback: (options: Options<{ label: string; value: any }>) => void
+  ) => void;
   errorMessage?: string | Array<string>;
 };
 
@@ -51,6 +55,7 @@ const Select = React.forwardRef(
       onBlur,
       onInputChange,
       onChange,
+      loadOptions,
       errorMessage,
       ...rest
     }: selectProps,
@@ -75,7 +80,7 @@ const Select = React.forwardRef(
       );
     }, [options, hasSelectAll, isMulti, selectAllText]);
 
-    const loadOptions = (
+    const filteringOptions = (
       inputValue: string,
       callback: (options: Options<{ label: string; value: any }>) => void
     ) => {
@@ -114,7 +119,7 @@ const Select = React.forwardRef(
           components={components ? components : customComponents}
           isMulti={isMulti}
           defaultOptions={selectOptions}
-          loadOptions={loadOptions}
+          loadOptions={loadOptions ? loadOptions : filteringOptions}
           isOptionDisabled={isOptionDisabled}
           defaultValue={selectedOptions}
           value={selectedOptions}
