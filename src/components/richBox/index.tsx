@@ -9,14 +9,20 @@ import i18n from '../../i18n';
 export type RichBoxProps = {
   className?: string;
   labelText?: string;
-  content?: string;
+  initialContent?: string;
   onChange: (content: any) => void;
   errorMessage?: string | Array<string>;
 };
 
 const RichBox = React.forwardRef(
   (
-    { className, labelText, content, onChange, errorMessage }: RichBoxProps,
+    {
+      className,
+      labelText,
+      initialContent,
+      onChange,
+      errorMessage,
+    }: RichBoxProps,
     ref: React.Ref<HTMLHeadingElement>
   ) => {
     const boxRef = useRef(null);
@@ -45,10 +51,16 @@ const RichBox = React.forwardRef(
       }
     }, [boxRef]);
     useEffect(() => {
-      if (initEditor && content && content?.trim() != '') {
-        initEditor.setData(content);
+      const currentContent = initEditor?.getData();
+      if (
+        initEditor &&
+        currentContent.trim() == '' &&
+        initialContent &&
+        initialContent?.trim() != ''
+      ) {
+        initEditor.setData(initialContent);
       }
-    }, [content]);
+    }, [initialContent]);
     return (
       <>
         {labelText ? (
