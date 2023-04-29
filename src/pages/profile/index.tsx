@@ -5,7 +5,7 @@ import { Avatar, Card, Tabs } from 'antd';
 import i18n from '../../i18n';
 import TitleHeader from '../../components/titleHeader';
 import Paragraph from '../../components/paragraph';
-import ImageFileUpload from '../../components/image-file-upload';
+import FileUpload from '../../components/file-upload';
 import ProfileAbout from '../../containers/profile/about';
 import ProfileChangePassword from '../../containers/profile/changePassword';
 
@@ -35,9 +35,9 @@ export default function PageProfile(props: PageIProfileProps) {
             alt='user-avatar'
             onClick={() => handleClick()}
           />
-          <ImageFileUpload
+          <FileUpload
             ref={profileImgRef}
-            loadImage={(file, base64) => {
+            load={(file, base64) => {
               setSelectImage(base64);
             }}
           />

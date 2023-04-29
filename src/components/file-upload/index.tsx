@@ -2,15 +2,16 @@ import Styles from './index.module.scss';
 import React, { useRef, useState } from 'react';
 import { BsFillCameraFill } from 'react-icons/bs';
 
-export type ImageFileUploadProps = {
+export type FileUploadProps = {
   className?: string;
-  loadImage: (imageFile: any, fileBase64: string | undefined) => void;
+  accept?: string;
+  load: (File: any, fileBase64: string | undefined) => void;
 };
 
-const ImageFileUpload = React.forwardRef(
-  ({ className, loadImage }: ImageFileUploadProps, ref: any) => {
-    const handelImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-      loadImage(
+const FileUpload = React.forwardRef(
+  ({ className, accept, load }: FileUploadProps, ref: any) => {
+    const handel = (e: React.ChangeEvent<HTMLInputElement>) => {
+      load(
         e.target.files?.[0],
         e.target.files?.length
           ? URL.createObjectURL(e.target.files?.[0])
@@ -24,9 +25,9 @@ const ImageFileUpload = React.forwardRef(
           className={'d-none'}
           type='file'
           onChange={(e) => {
-            handelImage(e);
+            handel(e);
           }}
-          accept='.jpg,.jpeg,.png,.webp,.gif'
+          accept={accept}
           id='choose'
         />
       </div>
@@ -34,5 +35,5 @@ const ImageFileUpload = React.forwardRef(
   }
 );
 
-ImageFileUpload.displayName = 'ImageFileUpload';
-export default ImageFileUpload;
+FileUpload.displayName = 'FileUpload';
+export default FileUpload;

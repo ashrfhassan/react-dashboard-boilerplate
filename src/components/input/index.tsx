@@ -10,7 +10,7 @@ import { Options } from 'react-select';
 import PhoneSelectOption from './phoneSelect';
 import { Button as AntButton, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import ImageFileUpload from '../image-file-upload';
+import FileUpload from '../file-upload';
 
 export type InputProps = {
   type: 'text' | 'password' | 'phone' | 'textArea' | 'file';
@@ -192,9 +192,9 @@ const Input = React.forwardRef(
           ) : (
             <></>
           )}
-          <ImageFileUpload
+          <FileUpload
             ref={fileRef}
-            loadImage={(file, base64) => {
+            load={(file, base64) => {
               onFileChange ? onFileChange(file, base64) : undefined;
             }}
           />
