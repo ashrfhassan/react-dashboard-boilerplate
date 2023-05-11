@@ -26,9 +26,6 @@ export const useAxios = (options?: { useRefreshToken: boolean }) => {
     },
   });
 
-  // for dev purposes as react call it twice in dev mode
-  let refreshCalled = false;
-
   api.interceptors.request.use(
     async (config) => {
       if (authUser) {
@@ -50,10 +47,8 @@ export const useAxios = (options?: { useRefreshToken: boolean }) => {
             err.response &&
             err.response.status == 401 &&
             authUser &&
-            authUser.refresh_token &&
-            refreshCalled == false
+            authUser.refresh_token
           ) {
-            refreshCalled = true;
             try {
               const res = await axios.get(
                 `${process.env.REACT_APP_API_GATEWAY_URI}/authentication/refresh-token`,
