@@ -63,7 +63,6 @@ export const useAxios = (options?: { useRefreshToken: boolean }) => {
                 'auth',
                 JSON.stringify({ ...authUser, ...res.data })
               );
-              refreshCalled = false;
               config.headers.Authorization = res.data.access_token;
             } catch (nestedErr: any) {
               // invalid refresh token as well
