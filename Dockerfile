@@ -17,6 +17,7 @@ COPY . /usr/service
 
 RUN yarn set version berry && yarn config set nodeLinker node-modules && yarn
 
+# default env variables in case none were send in commandline(--build-arg ARG) or docker-compose.
 ENV REACT_APP_ENVIRONMENT production
 ENV REACT_APP_API_GATEWAY_URI localhost:8585
 ENV SKIP_PREFLIGHT_CHECK true
