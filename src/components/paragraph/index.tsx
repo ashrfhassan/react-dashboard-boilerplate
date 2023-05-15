@@ -43,7 +43,7 @@ const Paragraph = React.forwardRef(
           <span
             onClick={() => {
               onEnterEdit?.();
-              setShowEditable(true);
+              editable && setShowEditable(true);
             }}
           >
             {children}
