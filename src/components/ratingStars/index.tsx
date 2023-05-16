@@ -82,7 +82,7 @@ const RatingStars = React.forwardRef(
     };
     return (
       <div onClick={() => onClick && onClick(starsRating)} className={'d-flex'}>
-        {genStars.reverse().map((star, i) => (
+        {genStars.map((star, i) => (
           <div key={i} className={`d-flex ${className}`}>
             {star}
           </div>
