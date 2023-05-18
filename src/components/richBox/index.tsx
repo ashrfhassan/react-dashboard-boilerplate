@@ -30,7 +30,9 @@ const RichBox = React.forwardRef(
     useEffect(() => {
       initEditor?.destroy();
       if (boxRef && initEditor === null) {
-        (window as any)['ClassicEditor']
+        const classicEditor =
+          (window as any)['ClassicEditor'] || require('./package/ckeditor.js');
+        classicEditor
           .create(boxRef.current as any, {
             language: i18n.language,
             autosave: {
