@@ -17,9 +17,8 @@ COPY . /usr/service
 
 RUN yarn set version berry && yarn config set nodeLinker node-modules && yarn
 
-# default env variables in case none were send in commandline(--build-arg ARG) or docker-compose.
 ENV REACT_APP_ENVIRONMENT production
-ENV REACT_APP_API_GATEWAY_URI localhost:8585
+ENV REACT_APP_API_GATEWAY_URI http://localhost:8585
 ENV SKIP_PREFLIGHT_CHECK true
 ENV PATH="/usr/node-v17.9.1-linux-x64/bin:$PATH"
 ENV NODE_PATH src/
@@ -29,7 +28,7 @@ RUN yarn run build
 
 FROM nginx:latest
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-stage /usr/service/build /usr/share/nginx/html
 
 EXPOSE $PORT
