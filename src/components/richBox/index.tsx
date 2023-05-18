@@ -4,6 +4,7 @@ import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import { renderError } from '../../helpers/renderers';
 import Label from '../label';
 import i18n from '../../i18n';
+require('./package/ckeditor.js');
 
 export type RichBoxProps = {
   className?: string;
@@ -29,9 +30,7 @@ const RichBox = React.forwardRef(
     useEffect(() => {
       initEditor?.destroy();
       if (boxRef && initEditor === null) {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const ClassicEditor = require('./package/ckeditor.js');
-        (ClassicEditor as any)
+        (window as any)['ClassicEditor']
           .create(boxRef.current as any, {
             language: i18n.language,
             autosave: {
