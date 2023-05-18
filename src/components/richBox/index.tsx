@@ -1,6 +1,5 @@
 import Styles from './index.module.scss';
 import React, { useEffect, useRef, useState } from 'react';
-import ClassicEditor from './package/ckeditor';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import { renderError } from '../../helpers/renderers';
 import Label from '../label';
@@ -30,6 +29,8 @@ const RichBox = React.forwardRef(
     useEffect(() => {
       initEditor?.destroy();
       if (boxRef && initEditor === null) {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const ClassicEditor = require('./package/ckeditor.js');
         (ClassicEditor as any)
           .create(boxRef.current as any, {
             language: i18n.language,
