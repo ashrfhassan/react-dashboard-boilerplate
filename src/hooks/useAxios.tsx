@@ -19,63 +19,15 @@ export const useAxios = (options?: { useRefreshToken: boolean }) => {
     headers: {
       'Content-type': 'application/json',
       Accept: 'application/json',
-      Authorization: options?.useRefreshToken
-        ? authUser?.refresh_token
-        : authUser?.access_token,
-      'Accept-Language': appStatus.currentLang,
     },
   });
 
   api.interceptors.request.use(
     async (config) => {
-      if (authUser) {
-        try {
-          await axios.get(
-            `${process.env.REACT_APP_API_GATEWAY_URI}/authentication/check-auth`,
-            {
-              headers: {
-                'Content-type': 'application/json',
-                Accept: 'application/json',
-                Authorization: authUser?.access_token,
-                'Accept-Language': appStatus.currentLang,
-              },
-            }
-          );
-          return config;
-        } catch (err: any) {
-          if (
-            err.response &&
-            err.response.status == 401 &&
-            authUser &&
-            authUser.refresh_token
-          ) {
-            try {
-              const res = await axios.get(
-                `${process.env.REACT_APP_API_GATEWAY_URI}/authentication/refresh-token`,
-                {
-                  headers: {
-                    Authorization: authUser.refresh_token,
-                  },
-                }
-              );
-              dispatch(updateAuthUser({ ...authUser, ...res.data }));
-              localStorage.setItem(
-                'auth',
-                JSON.stringify({ ...authUser, ...res.data })
-              );
-              config.headers.Authorization = res.data.access_token;
-            } catch (nestedErr: any) {
-              // invalid refresh token as well
-              if (nestedErr.response?.status === 403) {
-                localStorage.clear();
-                redirect('login');
-              }
-              return config;
-            }
-          }
-          return config;
-        }
-      }
+      config.headers.Authorization = options?.useRefreshToken
+        ? authUser?.refresh_token
+        : authUser?.access_token;
+      config.headers['Accept-Language'] = appStatus.currentLang;
       return config;
     },
     (error) => {
@@ -88,6 +40,34 @@ export const useAxios = (options?: { useRefreshToken: boolean }) => {
       return response.data;
     },
     async function (error) {
+      const originalConfig = error.config;
+      if (authUser && error.response.status === 401 && !originalConfig._retry) {
+        originalConfig._retry = true;
+        try {
+          const res = await axios.get(
+            `${process.env.REACT_APP_API_GATEWAY_URI}/authentication/refresh-token`,
+            {
+              headers: {
+                Authorization: authUser.refresh_token,
+              },
+            }
+          );
+          dispatch(updateAuthUser({ authUser: { ...authUser, ...res.data } }));
+          localStorage.setItem(
+            'auth',
+            JSON.stringify({ ...authUser, ...res.data })
+          );
+          originalConfig.headers.Authorization = res.data.access_token;
+          return (await axios(originalConfig)).data;
+        } catch (nestedErr: any) {
+          // invalid refresh token as well
+          if (nestedErr.response?.status === 403) {
+            localStorage.clear();
+            redirect('login');
+          }
+          return (await axios(originalConfig)).data;
+        }
+      }
       if (error.response?.status === 401) {
         localStorage.clear();
         redirect('login');
