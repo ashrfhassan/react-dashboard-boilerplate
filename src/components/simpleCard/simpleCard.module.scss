@@ -1,0 +1,14 @@
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+.simpleCard {
+  .simple-image {
+    width: 4rem;
+    height: 4rem;
+  }
+  p {
+    @extend .arabic-font;
+    @extend .fs-sm;
+    color: $gull-Grey;
+  }
+}

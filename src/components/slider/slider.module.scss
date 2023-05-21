@@ -1,0 +1,36 @@
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+.slider-wrapper {
+  :global .slick-slide {
+    & > div:first-child {
+      margin-right: 0.5rem;
+      margin-left: 0.5rem;
+    }
+  }
+  :global .slick-slide {
+    img {
+      display: inline-block;
+    }
+  }
+}
+.arrow {
+  @extend .fs-l;
+  padding: 0.3rem 0.3rem;
+  border-radius: 50%;
+  background-color: $lightWhite;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  z-index: 100;
+  cursor: pointer;
+}
+.arrow-right {
+  right: -1rem;
+}
+.arrow-left {
+  left: -1rem;
+}

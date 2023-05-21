@@ -1,0 +1,13 @@
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+.text-Badge {
+  @extend .arabic-font;
+  @extend .fs-sm;
+  line-height: 1.88 !important;
+  margin-top: 0 !important;
+  background-color: rgba(50, 47, 49, 0.6);
+  color: $lightWhite;
+  display: inline-block;
+  padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+}
