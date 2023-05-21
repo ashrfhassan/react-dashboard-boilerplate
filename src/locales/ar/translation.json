@@ -13,7 +13,8 @@
     },
     "forms": {
       "submit": "ارسال"
-    }
+    },
+    "search": "ابحث"
   },
   "pages": {
     "login": {

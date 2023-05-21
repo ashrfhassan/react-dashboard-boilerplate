@@ -14,7 +14,8 @@
     },
     "forms": {
       "submit": "Submit"
-    }
+    },
+    "search": "Search"
   },
   "pages": {
     "login": {

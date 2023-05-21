@@ -21,7 +21,8 @@ const Paragraph = React.forwardRef(
       editable,
       onEnterEdit,
       onLeaveEdit,
-    }: ParagraphProps,
+      ...rest
+    }: ParagraphProps & React.HTMLAttributes<HTMLParagraphElement>,
     ref: React.Ref<HTMLHeadingElement>
   ) => {
     const [showEditable, setShowEditable] = useState(false);
@@ -45,6 +46,7 @@ const Paragraph = React.forwardRef(
               onEnterEdit?.();
               editable && setShowEditable(true);
             }}
+            {...rest}
           >
             {children}
           </span>
