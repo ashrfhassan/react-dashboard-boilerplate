@@ -32,3 +32,5 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-stage /usr/service/build /usr/share/nginx/html
 
 EXPOSE $PORT
+
+# export PORT=80 &&(yarn run start </dev/null &>/dev/null &) && exit
