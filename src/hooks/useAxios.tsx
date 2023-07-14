@@ -61,7 +61,10 @@ export const useAxios = (options?: { useRefreshToken: boolean }) => {
           return (await axios(originalConfig)).data;
         } catch (nestedErr: any) {
           // invalid refresh token as well
-          if (nestedErr.response?.status === 403) {
+          if (
+            nestedErr.response?.status === 403 ||
+            nestedErr.response?.status === 401
+          ) {
             localStorage.clear();
             redirect('login');
           }
