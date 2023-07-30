@@ -67,13 +67,10 @@ export const useAxios = (options?: { useRefreshToken: boolean }) => {
           ) {
             localStorage.clear();
             redirect('login');
+          } else {
+            return (await axios(originalConfig)).data;
           }
-          return (await axios(originalConfig)).data;
         }
-      }
-      if (error.response?.status === 401) {
-        localStorage.clear();
-        redirect('login');
       }
       return Promise.reject(error);
     }
