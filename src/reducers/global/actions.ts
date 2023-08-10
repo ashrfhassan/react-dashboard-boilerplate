@@ -53,7 +53,26 @@ export const updateAuthUserAction = (
   };
 };
 
+export const UPDATE_SCREEN_LOADER = 'UPDATE_SCREEN_LOADER';
+export interface IUpdateScreenLoaderAction {
+  readonly type: typeof UPDATE_SCREEN_LOADER;
+  payload: {
+    isOpen: boolean;
+    content: React.ReactNode;
+  };
+}
+
+export const updateScreenLoaderAction = (
+  payload: IUpdateScreenLoaderAction['payload']
+): IUpdateScreenLoaderAction => {
+  return {
+    type: UPDATE_SCREEN_LOADER,
+    payload: payload,
+  };
+};
+
 export type GlobalActions =
   | IDisplayErrorMessageAction
   | IUpdateAppStatusAction
-  | IUpdateAuthUserAction;
+  | IUpdateAuthUserAction
+  | IUpdateScreenLoaderAction;

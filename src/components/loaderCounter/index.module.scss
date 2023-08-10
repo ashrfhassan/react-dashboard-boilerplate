@@ -1,0 +1,41 @@
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+.spinner {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: conic-gradient(#0000 20%, $Space-Cadet);
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    #0000 calc(100% - 14.1px),
+    #000 0
+  );
+  animation: spinner-zp9dbg 1s infinite linear;
+}
+
+@keyframes spinner-zp9dbg {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.loader-container {
+  position: relative;
+  span {
+    @extend .f-w-bold;
+    @extend .fs-l;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    &:global(.one-digit) {
+      left: 44%;
+    }
+    &:global(.two-digit) {
+      left: 40%;
+    }
+    &:global(.three-digit) {
+      left: 34%;
+    }
+  }
+}

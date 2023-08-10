@@ -4,9 +4,12 @@ import {
   IUpdateAppStatusActionSaga,
   IUpdateAuthUserActionSaga,
   UPDATE_AUTH_USER_SAGA,
+  IUpdateScreenLoaderActionSaga,
+  UPDATE_SCREEN_LOADER_SAGA,
 } from './types';
 import {
   updateAuthUserAction,
+  updateScreenLoaderAction,
   updateStatusAction,
 } from '../../reducers/global/actions';
 
@@ -24,4 +27,17 @@ function* updateAuthUser(action: IUpdateAuthUserActionSaga) {
 
 export function* watchUpdateAuthUser() {
   yield takeEvery(UPDATE_AUTH_USER_SAGA, updateAuthUser);
+}
+
+function* updateScreenLoader(action: IUpdateScreenLoaderActionSaga) {
+  yield put(
+    updateScreenLoaderAction({
+      isOpen: action.payload.isOpen,
+      content: action.payload.content,
+    })
+  );
+}
+
+export function* watchUpdateScreenLoader() {
+  yield takeEvery(UPDATE_SCREEN_LOADER_SAGA, updateScreenLoader);
 }

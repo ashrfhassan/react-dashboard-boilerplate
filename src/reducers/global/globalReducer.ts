@@ -4,6 +4,7 @@ import {
   ERROR_MESSAGE,
   UPDATE_APP_STATUS,
   UPDATE_AUTH_USER,
+  UPDATE_SCREEN_LOADER,
 } from './actions';
 
 interface IGlobalState {
@@ -12,6 +13,10 @@ interface IGlobalState {
     currentLang: string;
   };
   authUser?: IAuthUser;
+  screenLoader: {
+    isOpen: boolean;
+    content: React.ReactNode;
+  };
 }
 
 const globalState: IGlobalState = {
@@ -20,6 +25,10 @@ const globalState: IGlobalState = {
     currentLang: 'en',
   },
   authUser: undefined,
+  screenLoader: {
+    isOpen: false,
+    content: '',
+  },
 };
 
 const globalReducer = (
@@ -41,6 +50,11 @@ const globalReducer = (
       return {
         ...state,
         authUser: action.payload.authUser,
+      };
+    case UPDATE_SCREEN_LOADER:
+      return {
+        ...state,
+        screenLoader: action.payload,
       };
     default:
       return state;

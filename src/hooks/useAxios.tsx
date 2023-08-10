@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../store';
 import { updateAuthUser } from '../sagas/global/types';
 
-export const useAxios = (options?: { useRefreshToken: boolean }) => {
+export const useAxios = (options?: {
+  useRefreshToken?: boolean;
+  onUploadProgress?: (uploadedPercent: number) => void;
+}) => {
   const dispatch = useDispatch();
   const appStatus = useSelector(
     (state: AppState) => state.globalReducer.appStatus
@@ -19,6 +22,12 @@ export const useAxios = (options?: { useRefreshToken: boolean }) => {
     headers: {
       'Content-type': 'application/json',
       Accept: 'application/json',
+    },
+    onUploadProgress: function (progressEvent) {
+      // Do whatever you want with the native progress event
+      const total = progressEvent.total ?? 0;
+      const uploadedPercent = Math.round((100 * progressEvent.loaded) / total);
+      options?.onUploadProgress?.(uploadedPercent);
     },
   });
 

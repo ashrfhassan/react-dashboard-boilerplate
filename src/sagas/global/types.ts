@@ -35,3 +35,21 @@ export const updateAuthUser = (
     payload: payload,
   };
 };
+
+export const UPDATE_SCREEN_LOADER_SAGA = 'UPDATE_SCREEN_LOADER_SAGA';
+export interface IUpdateScreenLoaderActionSaga {
+  readonly type: typeof UPDATE_SCREEN_LOADER_SAGA;
+  payload: {
+    isOpen: boolean;
+    content: React.ReactNode;
+  };
+}
+
+export const updateScreenLoader = (
+  payload: IUpdateScreenLoaderActionSaga['payload']
+): IUpdateScreenLoaderActionSaga => {
+  return {
+    type: UPDATE_SCREEN_LOADER_SAGA,
+    payload: payload,
+  };
+};

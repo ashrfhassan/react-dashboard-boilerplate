@@ -6,6 +6,7 @@ import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 import SideMenuStyles from './sidemenu/index.module.scss';
 import { useBreakPoint } from '../hooks/useBreakPoint';
+import ScreenLoader from '../components/screenLoader';
 
 const { Content, Footer } = Layout;
 
@@ -28,6 +29,7 @@ export default function MainLayout() {
         <Content className='pages-bg'>
           <Outlet />
         </Content>
+        <ScreenLoader />
       </Layout>
     </>
   );
