@@ -30,7 +30,7 @@ export type DateTimeProps = {
   validationCheck?: 'success' | 'error';
   onBlur?: (e: any) => void;
   onChange?: (newVal: string | string[]) => void;
-  defaultValue?: string | string[];
+  value?: string | string[];
 };
 
 const DateTime = React.forwardRef(
@@ -44,7 +44,7 @@ const DateTime = React.forwardRef(
       validationCheck,
       onBlur,
       onChange,
-      defaultValue,
+      value,
     }: DateTimeProps,
     ref: React.Ref<HTMLInputElement>
   ) => {
@@ -77,11 +77,11 @@ const DateTime = React.forwardRef(
                       ])
                     : undefined;
                 }}
-                defaultValue={
-                  defaultValue
+                value={
+                  value
                     ? [
-                        dayjs(defaultValue[0], format[type]),
-                        dayjs(defaultValue[1], format[type]),
+                        dayjs(value[0], format[type]),
+                        dayjs(value[1], format[type]),
                       ]
                     : [
                         dayjs(
@@ -110,11 +110,11 @@ const DateTime = React.forwardRef(
                       ])
                     : undefined;
                 }}
-                defaultValue={
-                  defaultValue
+                value={
+                  value
                     ? [
-                        dayjs(new Date(defaultValue[0] as string)),
-                        dayjs(new Date(defaultValue[1] as string)),
+                        dayjs(new Date(value[0] as string)),
+                        dayjs(new Date(value[1] as string)),
                       ]
                     : [dayjs(new Date()), dayjs(new Date())]
                 }
@@ -144,9 +144,9 @@ const DateTime = React.forwardRef(
               onChange={(e) => {
                 onChange && e ? onChange(e.format(format[type])) : undefined;
               }}
-              defaultValue={
-                defaultValue
-                  ? dayjs(defaultValue as string, format[type])
+              value={
+                value
+                  ? dayjs(value as string, format[type])
                   : dayjs(
                       `${new Date().getHours()}:${new Date().getMinutes()}`,
                       format[type]
@@ -163,10 +163,8 @@ const DateTime = React.forwardRef(
               onChange={(e) => {
                 onChange && e ? onChange(e.format(format[type])) : undefined;
               }}
-              defaultValue={
-                defaultValue
-                  ? dayjs(new Date(defaultValue as string))
-                  : dayjs(new Date())
+              value={
+                value ? dayjs(new Date(value as string)) : dayjs(new Date())
               }
               format={format[type]}
               showTime={type == 'datetime'}

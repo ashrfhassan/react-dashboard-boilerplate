@@ -111,7 +111,7 @@ const UserForm = () => {
               <DateTime
                 type='datetime'
                 labelText={'date'}
-                defaultValue={formik.values.start_date}
+                value={formik.values.start_date}
                 onBlur={(e: any) => {
                   formik.setFieldTouched('start_date', true);
                 }}
