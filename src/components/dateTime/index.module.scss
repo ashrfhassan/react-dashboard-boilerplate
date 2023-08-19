@@ -1,0 +1,30 @@
+@import '../../styles/_colors';
+@import '../../styles/_font_styles';
+
+input.input {
+  padding: 4px 20px 5px 20px;
+  border-radius: 4px;
+  border: solid 1px #c8c9cc;
+  background-color: $lightWhite;
+
+  &::placeholder {
+    @extend .arabic-font;
+    @extend .fs-md;
+    @extend .f-w-thin;
+    text-align: start;
+    color: $gull-Grey;
+  }
+
+  &-success {
+    border-color: $kellyGreen;
+    background-color: $kellyGreen-success;
+  }
+  &-error {
+    border-color: $dangerRed;
+    background-color: $dangerRed-light;
+  }
+}
+
+.input-label {
+  color: $inputLabelGrey;
+}

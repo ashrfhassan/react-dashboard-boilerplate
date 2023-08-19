@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -11,6 +12,7 @@ import { useAxios } from '../../hooks/useAxios';
 import { userSchema } from './UserFormSchema';
 import i18n from '../../i18n';
 import Alert from '../../components/alert';
+import DateTime from '../../components/dateTime';
 
 const UserForm = () => {
   const { axios } = useAxios();
@@ -19,6 +21,7 @@ const UserForm = () => {
     initialValues: {
       name: '',
       birth: '',
+      start_date: '',
     },
     validate: async (values) => {
       return await yupErrorMapping(userSchema(), values);
@@ -100,6 +103,33 @@ const UserForm = () => {
                   formik.errors.birth &&
                   formik.errors.birth
                     ? formik.errors.birth
+                    : undefined
+                }
+              />
+            </Col>
+            <Col md={12} className='mt-4'>
+              <DateTime
+                type='datetime'
+                labelText={'date'}
+                defaultValue={formik.values.start_date}
+                onBlur={(e: any) => {
+                  formik.setFieldTouched('start_date', true);
+                }}
+                onChange={(newVal: any) => {
+                  formik.setFieldValue('start_date', newVal);
+                }}
+                validationCheck={
+                  formik.touched.start_date
+                    ? formik.errors.start_date
+                      ? 'error'
+                      : 'success'
+                    : undefined
+                }
+                errorMessage={
+                  formik.touched.start_date &&
+                  formik.errors.start_date &&
+                  formik.errors.start_date
+                    ? formik.errors.start_date
                     : undefined
                 }
               />
