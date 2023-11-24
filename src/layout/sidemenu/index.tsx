@@ -100,7 +100,7 @@ function SideMenu({ sideMenuCollapse, setSideMenuCollapse }: ISideMenuProps) {
               key: 'pages',
               icon: <TeamOutlined />,
               label: i18n.t('sideMenu.pages'),
-              popupClassName: breakPoint === 'mobile' ? 'd-none' : '',
+              popupClassName: breakPoint === 'xs' ? 'd-none' : '',
               children: [
                 {
                   key: menuKeys.users.key,

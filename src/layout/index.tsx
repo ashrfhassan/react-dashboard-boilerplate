@@ -13,7 +13,7 @@ const { Content, Footer } = Layout;
 export default function MainLayout() {
   const breakPoint = useBreakPoint();
   const [sideMenuCollapse, setSideMenuCollapse] = useState(
-    breakPoint === 'mobile' ? true : false
+    breakPoint === 'xs' ? true : false
   );
   return (
     <>
