@@ -72,8 +72,7 @@ const UserForm = () => {
                 }
                 errorMessage={
                   formik.touched.name &&
-                  formik.errors.name &&
-                  formik.errors.name
+                  formik.errors.name 
                     ? formik.errors.name
                     : undefined
                 }
@@ -100,8 +99,7 @@ const UserForm = () => {
                 }
                 errorMessage={
                   formik.touched.birth &&
-                  formik.errors.birth &&
-                  formik.errors.birth
+                  formik.errors.birth 
                     ? formik.errors.birth
                     : undefined
                 }
@@ -127,8 +125,7 @@ const UserForm = () => {
                 }
                 errorMessage={
                   formik.touched.start_date &&
-                  formik.errors.start_date &&
-                  formik.errors.start_date
+                  formik.errors.start_date 
                     ? formik.errors.start_date
                     : undefined
                 }

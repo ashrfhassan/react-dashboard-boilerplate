@@ -78,8 +78,7 @@ const LoginForm = () => {
                 }
                 errorMessage={
                   formik.touched.email &&
-                  formik.errors.email &&
-                  formik.errors.email
+                  formik.errors.email 
                     ? formik.errors.email
                     : undefined
                 }
@@ -108,8 +107,7 @@ const LoginForm = () => {
                 }
                 errorMessage={
                   formik.touched.password &&
-                  formik.errors.password &&
-                  formik.errors.password
+                  formik.errors.password 
                     ? formik.errors.password
                     : undefined
                 }

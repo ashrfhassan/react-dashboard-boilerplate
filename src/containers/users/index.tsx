@@ -188,7 +188,7 @@ function UsersContainer(props: IUserTableProps) {
           <p className='font-weight-bold font-italic'>
             Oops! Looks like you havent added any users yet.
           </p>
-        )
+        ) as any
       }
     >
       <Row className={'m-0 p-0'}>

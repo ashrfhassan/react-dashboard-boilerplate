@@ -77,7 +77,6 @@ const ProfileChangePasswordForm = () => {
                 }
                 errorMessage={
                   formik.touched.currentPassword &&
-                  formik.errors.currentPassword &&
                   formik.errors.currentPassword
                     ? formik.errors.currentPassword
                     : undefined
@@ -107,8 +106,7 @@ const ProfileChangePasswordForm = () => {
                 }
                 errorMessage={
                   formik.touched.password &&
-                  formik.errors.password &&
-                  formik.errors.password
+                  formik.errors.password 
                     ? formik.errors.password
                     : undefined
                 }
@@ -138,8 +136,7 @@ const ProfileChangePasswordForm = () => {
                 }
                 errorMessage={
                   formik.touched.confirmPassword &&
-                  formik.errors.confirmPassword &&
-                  formik.errors.confirmPassword
+                  formik.errors.confirmPassword 
                     ? formik.errors.confirmPassword
                     : undefined
                 }
@@ -151,12 +148,12 @@ const ProfileChangePasswordForm = () => {
               <RichBox
                 labelText={`${i18n.t('pages.my-profile.newPassword')}`}
                 onChange={(content: any) => {
+                  formik.setFieldTouched('password', true);
                   formik.setFieldValue('password', content);
                 }}
                 errorMessage={
                   formik.touched.password &&
-                  formik.errors.password &&
-                  formik.errors.password
+                  formik.errors.password 
                     ? formik.errors.password
                     : undefined
                 }
@@ -183,8 +180,7 @@ const ProfileChangePasswordForm = () => {
                 }
                 errorMessage={
                   formik.touched.password &&
-                  formik.errors.password &&
-                  formik.errors.password
+                  formik.errors.password 
                     ? formik.errors.password
                     : undefined
                 }
