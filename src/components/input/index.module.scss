@@ -105,14 +105,20 @@ input.input {
 .input-icon {
   position: absolute;
   top: 12%;
+  &[dir='ltr'] {
+    right: 0 !important;
+  }
+  &[dir='rtl'] {
+    left: 0 !important;
+  }
 }
 [dir='ltr'] {
-  .input-icon {
+  .input-icon:not([dir]) {
     right: 0;
   }
 }
 [dir='rtl'] {
-  .input-icon {
+  .input-icon:not([dir]) {
     left: 0;
   }
 }

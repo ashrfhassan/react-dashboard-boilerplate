@@ -10,6 +10,7 @@ import { Options } from 'react-select';
 import PhoneSelectOption from './phoneSelect';
 import { Button as AntButton, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import FileUpload from '../file-upload';
 
 export type InputProps = {
@@ -38,6 +39,7 @@ export type InputProps = {
   icon?: React.ReactNode;
   countryCodes?: Options<{ label: string; value: any }>;
   defaultSelectedCountry?: { label: string; value: any };
+  dir?: 'rtl' | 'ltr';
 };
 
 const Input = React.forwardRef(
@@ -60,6 +62,7 @@ const Input = React.forwardRef(
       icon,
       countryCodes,
       defaultSelectedCountry,
+      dir,
       ...rest
     }: InputProps & React.InputHTMLAttributes<HTMLInputElement>,
     ref: React.Ref<HTMLInputElement>
@@ -68,6 +71,7 @@ const Input = React.forwardRef(
       textAreaValue ? textAreaValue : ''
     );
     const [textInput, setTextInput] = useState(textValue ? textValue : '');
+    const [passReveal, setPassReveal] = useState(false);
     const fileRef = useRef<any>(null);
     const handleFileClick = () => {
       fileRef.current?.click();
@@ -131,6 +135,7 @@ const Input = React.forwardRef(
               </Col>
               <Col xs={10} className={'pe-0 ps-0'}>
                 <input
+                  dir={dir}
                   ref={ref}
                   className={`form-control ${Styles['phone-input']} ${
                     Styles[
@@ -164,6 +169,7 @@ const Input = React.forwardRef(
             <></>
           )}
           <textarea
+            dir={dir}
             className={`form-control ${
               Styles[`input${validationCheck ? `-${validationCheck}` : ''}`]
             } ${Styles['text-area']} ${className ?? ''}`}
@@ -212,13 +218,30 @@ const Input = React.forwardRef(
           <></>
         )}
         <div className='position-relative'>
-          {icon && <div className={`me-1 ${Styles['input-icon']}`}>{icon}</div>}
+          {icon && type != 'password' && (
+            <div className={`me-1 ${Styles['input-icon']}`}>{icon}</div>
+          )}
+          {type === 'password' && (
+            <div
+              dir={dir}
+              className={`ms-1 ${Styles['input-icon']}`}
+              onMouseDown={() => {
+                setPassReveal(true);
+              }}
+              onMouseUp={() => {
+                setPassReveal(false);
+              }}
+            >
+              {passReveal ? <FaRegEyeSlash /> : <FaRegEye />}
+            </div>
+          )}
           <input
+            dir={dir}
             ref={ref}
             className={`form-control ${
               Styles[`input${validationCheck ? `-${validationCheck}` : ''}`]
             } ${icon ? 'pe-4' : ''} ${className ?? ''}`}
-            type={type}
+            type={type == 'password' && passReveal ? 'text' : type}
             placeholder={placeholder}
             onBlur={(e) => (onBlur ? onBlur(e) : undefined)}
             value={textInput}
