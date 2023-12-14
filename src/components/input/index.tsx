@@ -225,8 +225,14 @@ const Input = React.forwardRef(
             <div
               dir={dir}
               className={`ms-1 ${Styles['input-icon']}`}
+              onPointerDown={() => {
+                setPassReveal(true);
+              }}
               onMouseDown={() => {
                 setPassReveal(true);
+              }}
+              onPointerUp={() => {
+                setPassReveal(false);
               }}
               onMouseUp={() => {
                 setPassReveal(false);
