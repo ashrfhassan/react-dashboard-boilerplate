@@ -15,7 +15,7 @@ RUN npm install --global yarn
 
 COPY . /usr/service
 
-RUN yarn set version berry && yarn config set nodeLinker node-modules && yarn
+RUN npm install
 
 # default env variables in case none were send in commandline(--build-arg ARG) or docker-compose.
 ENV REACT_APP_ENVIRONMENT development

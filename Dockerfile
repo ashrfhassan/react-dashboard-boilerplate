@@ -15,7 +15,7 @@ RUN npm install --global yarn
 
 COPY . /usr/service
 
-RUN yarn set version berry && yarn config set nodeLinker node-modules && yarn
+RUN npm install
 
 ENV REACT_APP_ENVIRONMENT production
 ENV REACT_APP_API_GATEWAY_URI http://localhost:8585

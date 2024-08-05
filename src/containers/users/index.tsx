@@ -9,7 +9,7 @@ import DataTable, { IHeaderColumn, IRow } from '../../components/dataTable';
 import { useAxios } from '../../hooks/useAxios';
 import { fetchUsers } from '../../api/user';
 import { useSearchParams } from 'react-router-dom';
-import { Pagination } from 'listing-pagination';
+import { Pagination } from 'react-listing-pagination';
 import Constants from '../../constants';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import BtnStyles from '../../components/button/index.module.scss';
@@ -166,7 +166,7 @@ function UsersContainer(props: IUserTableProps) {
 
   return (
     <>
-          <Row className={'m-0 p-0'}>
+      <Row className={'m-0 p-0'}>
         <Col sm={3} className={'p-0 mb-3'}>
           <Input
             value={search ?? ''}
@@ -181,67 +181,68 @@ function UsersContainer(props: IUserTableProps) {
           />
         </Col>
       </Row>
-    <Loader
-      isLoading={false}
-      errorMessage={
-        displayedRows.length > 0 ? undefined : (
-          <p className='font-weight-bold font-italic'>
-            Oops! Looks like you havent added any users yet.
-          </p>
-        ) as any
-      }
-    >
-      <Row className={'m-0 p-0'}>
-        <Col sm={12} className={'p-0 text-center'}>
-          <DataTable headerColumns={headerColumns} rows={displayedRows} />
-        </Col>
-        <Col sm={12} className={'mt-3 text-center'}>
-          <Pagination
-            totalItems={usersTotalCount}
-            currentPage={currentPage}
-            itemsPerPage={Constants.itemsPerPage}
-            displayedNumbersCount={6}
-            onChangePage={(pageNumber: number) => {
-              searchParams.set('page', pageNumber.toString());
-              setSearchParams(searchParams);
-            }}
-            OnPreBtnClick={(pageNumber: number) => {
-              searchParams.set('page', pageNumber.toString());
-              setSearchParams(searchParams);
-            }}
-            OnNextBtnClick={(pageNumber: number) => {
-              searchParams.set('page', pageNumber.toString());
-              setSearchParams(searchParams);
-            }}
-            hasNumbersGap
-            hasNextPrevious
-            previousBtnContent={
-              <div className='d-flex font-gull-grey mt-0'>
-                <BsArrowLeft
-                  size={20}
-                  className={'arrow-pagination arrow-icon'}
-                />
-                <div>{i18n.t('global.pagination.previous')}</div>
-              </div>
-            }
-            nextBtnContent={
-              <div className='d-flex font-gull-grey mt-0'>
-                <div>{i18n.t('global.pagination.next')}</div>
-                <BsArrowRight
-                  size={20}
-                  className={'arrow-pagination arrow-icon'}
-                />
-              </div>
-            }
-            styles={{
-              position: 'center',
-              numberBtnClass: `px-3 ${BtnStyles['button-light']} mx-1`,
-              activeBtnClass: `${'active-button'} mx-1`,
-            }}
-          />
-        </Col>
-      </Row>
-    </Loader>
+      <Loader
+        isLoading={false}
+        errorMessage={
+          displayedRows.length > 0
+            ? undefined
+            : ((
+                <p className='font-weight-bold font-italic'>
+                  Oops! Looks like you havent added any users yet.
+                </p>
+              ) as any)
+        }
+      >
+        <Row className={'m-0 p-0'}>
+          <Col sm={12} className={'p-0 text-center'}>
+            <DataTable headerColumns={headerColumns} rows={displayedRows} />
+          </Col>
+          <Col sm={12} className={'mt-3 text-center'}>
+            <Pagination
+              totalItems={usersTotalCount}
+              currentPage={currentPage as number}
+              itemsPerPage={Constants.itemsPerPage}
+              displayedNumbersCount={6}
+              onPageChange={(pageNumber: number) => {
+                searchParams.set('page', pageNumber.toString());
+                setSearchParams(searchParams);
+              }}
+              OnPreBtnClick={(pageNumber: number) => {
+                searchParams.set('page', pageNumber.toString());
+                setSearchParams(searchParams);
+              }}
+              OnNextBtnClick={(pageNumber: number) => {
+                searchParams.set('page', pageNumber.toString());
+                setSearchParams(searchParams);
+              }}
+              numbersGapBtnContent={'...'}
+              previousBtnContent={
+                <div className='d-flex font-gull-grey mt-0'>
+                  <BsArrowLeft
+                    size={20}
+                    className={'arrow-pagination arrow-icon'}
+                  />
+                  <div>{i18n.t('global.pagination.previous')}</div>
+                </div>
+              }
+              nextBtnContent={
+                <div className='d-flex font-gull-grey mt-0'>
+                  <div>{i18n.t('global.pagination.next')}</div>
+                  <BsArrowRight
+                    size={20}
+                    className={'arrow-pagination arrow-icon'}
+                  />
+                </div>
+              }
+              styles={{
+                position: 'center',
+                numberBtnClass: `px-3 ${BtnStyles['button-light']} mx-1`,
+                activeBtnClass: `${'active-button'} mx-1`,
+              }}
+            />
+          </Col>
+        </Row>
+      </Loader>
     </>
   );
 }

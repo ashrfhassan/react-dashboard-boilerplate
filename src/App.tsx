@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Router, BrowserRouter } from 'react-router-dom';
-import { useClearCache } from 'react-clear-cache';
 import i18n from './i18n';
 
 // bootstrap styles
@@ -17,9 +16,6 @@ interface IAppProps {
 }
 
 const App = (props: IAppProps) => {
-  const { isLatestVersion, emptyCacheStorage } = useClearCache();
-  if (!isLatestVersion) emptyCacheStorage();
-
   return (
     <BrowserRouter>
       <ErrorBoundary>

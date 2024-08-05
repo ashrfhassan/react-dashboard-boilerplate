@@ -22,6 +22,7 @@
   "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
   "ignorePatterns": ["*.js"],
   "rules": {
+    "no-unused-vars": "off",
     "react/react-in-jsx-scope": "off",
     "camelcase": "error",
     "spaced-comment": "error",
